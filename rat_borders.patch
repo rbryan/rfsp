@@ -1,0 +1,25 @@
+diff -rupN ../comp/ratpoison-1.4.7/src/manage.c ./src/manage.c
+--- ../comp/ratpoison-1.4.7/src/manage.c	2014-03-24 04:23:55.000000000 -0500
++++ ./src/manage.c	2014-06-07 20:40:37.636891705 -0500
+@@ -809,8 +809,8 @@ maximize (rp_window *win)
+ 
+ 
+   /* Actually do the maximizing. */
+-  XMoveResizeWindow (dpy, win->w, win->scr->left + win->x, win->scr->top + win->y, win->width, win->height);
+-  XSetWindowBorderWidth (dpy, win->w, win->border);
++  XMoveResizeWindow (dpy, win->w, win->scr->left + win->x + defaults.window_border_width, win->scr->top + win->y + defaults.window_border_width, win->width, win->height);
++  XSetWindowBorderWidth (dpy, win->w, /*win->border*/0);
+ 
+   XSync (dpy, False);
+ }
+@@ -846,8 +846,8 @@ force_maximize (rp_window *win)
+   XSync (dpy, False);
+ 
+   /* Resize the window to its proper maximum size. */
+-  XMoveResizeWindow (dpy, win->w, win->scr->left + win->x, win->scr->top + win->y, win->width, win->height);
+-  XSetWindowBorderWidth (dpy, win->w, win->border);
++  XMoveResizeWindow (dpy, win->w, win->scr->left + win->x + defaults.window_border_width, win->scr->top + win->y + defaults.window_border_width, win->width, win->height);
++  XSetWindowBorderWidth (dpy, win->w, /*win->border*/0);
+ 
+   XSync (dpy, False);
+ }
